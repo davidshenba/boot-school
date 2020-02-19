@@ -36,6 +36,15 @@ public class StudentController {
 	}
 	
 	/**
+	 * @param studentName
+	 * @return
+	 */
+	@GetMapping("/search/byname/{studentName}")
+	public List<Student> searchStudentsByName(@PathVariable("studentName") String studentName) {
+		return studentService.serachByName(studentName);
+	}
+	
+	/**
 	 * @param studentId
 	 * @return
 	 * @throws NoMatchFoundException

@@ -71,5 +71,13 @@ public class StudentService {
 		}
 		studentRepo.deleteById(studentId);
 	}
+	
+	/**
+	 * @param studentName
+	 * @return
+	 */
+	public List<Student> serachByName(String studentName) {
+		return studentRepo.findByStudentNameContainsIgnoreCase(studentName);
+	}
 
 }
