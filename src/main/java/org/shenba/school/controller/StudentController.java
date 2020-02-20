@@ -38,6 +38,25 @@ public class StudentController {
 	}
 	
 	/**
+	 * @return
+	 */
+	@GetMapping("/enroll")
+	public String enrollStudents(Student student) {
+		return "enroll-student";
+	}
+	
+	/**
+	 * @return
+	 * @throws NoMatchFoundException 
+	 */
+	@PostMapping("/enroll")
+	public String enrollStudents(Student student, Model model) throws NoMatchFoundException {
+		studentService.saveStudent(student);
+		model.addAttribute("students", studentService.getStudents());
+		return "show-students";
+	}
+	
+	/**
 	 * @param studentName
 	 * @return
 	 */

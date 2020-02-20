@@ -12,6 +12,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 /**
  * @author shenba
  *
@@ -37,6 +39,7 @@ public class Student implements Serializable{
 	private String studentClass;
 	
 	@Column(name = "ST_DOB", nullable = false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
 	private Date dateOfBirth;
 	
@@ -44,10 +47,11 @@ public class Student implements Serializable{
 	private char studentSection;
 	
 	@Column(name = "ST_DOJ", nullable = false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
 	private Date dateOfJoining;
 	
-	@Column(name = "ST_BLD_GRP", length = 2)
+	@Column(name = "ST_BLD_GRP", length = 3)
 	private String bloodGroup;
 	
 	@Column(name = "ST_GENDER", length = 1, nullable = false)
