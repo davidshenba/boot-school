@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @author shenba
@@ -61,7 +62,7 @@ public class StudentController {
 	 * @return
 	 */
 	@GetMapping("/search/byname/{studentName}")
-	public List<Student> searchStudentsByName(@PathVariable("studentName") String studentName) {
+	public @ResponseBody List<Student> searchStudentsByName(@PathVariable("studentName") String studentName) {
 		return studentService.serachByName(studentName);
 	}
 	
