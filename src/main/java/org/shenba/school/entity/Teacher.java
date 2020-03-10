@@ -2,12 +2,17 @@ package org.shenba.school.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -55,6 +60,9 @@ public class Teacher implements Serializable{
 
 	@Column(name = "TCHR_SUBJECT", length = 1, nullable = false)
 	private char subject;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "classTeacher")
+	private List<Student> students;
 
 	/**
 	 * @return the teacherId
@@ -180,6 +188,20 @@ public class Teacher implements Serializable{
 	 */
 	public void setSubject(char subject) {
 		this.subject = subject;
+	}
+
+	/**
+	 * @return the students
+	 */
+	public List<Student> getStudents() {
+		return students;
+	}
+
+	/**
+	 * @param students the students to set
+	 */
+	public void setStudents(List<Student> students) {
+		this.students = students;
 	}
 
 }

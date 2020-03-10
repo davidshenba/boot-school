@@ -30,11 +30,7 @@ public class TeacherService {
 	 * @throws NoMatchFoundException
 	 */
 	public Teacher findTeacherById(Long teacherId) throws NoMatchFoundException {
-		Optional<Teacher> teacher = teacherRepo.findById(teacherId);
-		if(!teacher.isPresent()) {
-			throw new NoMatchFoundException("The teacher you are trying to find does not exist!");
-		}
-		return teacher.get();
+		return getTeacherWithStudents(teacherId, false);
 	}
 	
 	/**
@@ -90,6 +86,22 @@ public class TeacherService {
 	public List<Teacher> goToPage(int pageNum, int rowsPerPage) {
 		Page<Teacher> teacherPage = teacherRepo.findAll(PageRequest.of(pageNum, rowsPerPage));
 		return teacherPage.getContent();
+	}
+
+	/**
+	 * @param teacherId
+	 * @return
+	 */
+	public Teacher getTeacherWithStudents(Long teacherId, boolean fetchStudents) throws NoMatchFoundException {
+		Optional<Teacher> teacherOpt = teacherRepo.findById(teacherId);
+		if(!teacherOpt.isPresent()) {
+			throw new NoMatchFoundException("The teacher you are trying to find does not exist!");
+		}
+		Teacher teacher = teacherOpt.get();
+		if(fetchStudents) {
+			teacher.getStudents();
+		}
+		return teacher;
 	}
 
 }

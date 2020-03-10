@@ -48,8 +48,12 @@ public class TeacherController {
 	 * @throws NoMatchFoundException
 	 */
 	@GetMapping("/{id}")
-	public Teacher getTeacherById(@PathVariable("id") Long teacherId) throws NoMatchFoundException {
-		return teacherService.findTeacherById(teacherId);
+	public Teacher getTeacherById(
+			@PathVariable("id") Long teacherId, 
+			@RequestParam(required = false, name = "fetchStudents") 
+			boolean fetchStudents) 
+					throws NoMatchFoundException {
+		return teacherService.getTeacherWithStudents(teacherId, fetchStudents);
 	}
 	
 	/**
@@ -82,5 +86,5 @@ public class TeacherController {
 	public List<Teacher> goToPage(@RequestParam int page, @RequestParam int rowsPerPage) {
 		return teacherService.goToPage((page - 1), rowsPerPage);
 	}
-
+	
 }
