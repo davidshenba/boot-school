@@ -5,13 +5,9 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -60,11 +56,6 @@ public class Student implements Serializable{
 	
 	@Column(name = "ST_GENDER", length = 1, nullable = false)
 	private char gender;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "ST_CLASS", referencedColumnName = "TCHR_INCHARGE_CLASS", insertable=false, updatable=false)
-	@JoinColumn(name = "ST_SEC", referencedColumnName = "TCHR_SEC", insertable=false, updatable=false)
-	private Teacher classTeacher;
 
 	/**
 	 * @return the studentId

@@ -11,7 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -61,7 +60,9 @@ public class Teacher implements Serializable{
 	@Column(name = "TCHR_SUBJECT", length = 1, nullable = false)
 	private char subject;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "classTeacher")
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ST_CLASS", referencedColumnName = "TCHR_INCHARGE_CLASS", insertable=false, updatable=false)
+	@JoinColumn(name = "ST_SEC", referencedColumnName = "TCHR_SEC", insertable=false, updatable=false)
 	private List<Student> students;
 
 	/**
