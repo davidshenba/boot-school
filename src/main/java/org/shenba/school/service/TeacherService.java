@@ -99,7 +99,8 @@ public class TeacherService {
 		}
 		Teacher teacher = teacherOpt.get();
 		if(fetchStudents) {
-			teacher.getStudents();
+			//to lazy-load students. Without this, students list won't load!!! 
+			teacher.getStudents().size();
 		}
 		return teacher;
 	}
